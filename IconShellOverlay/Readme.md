@@ -2,6 +2,8 @@
 
 git, svn 같은것들 아이콘이 오버레이 되지 않을때 레지스트리를 수정한다.
 
+https://github.com/pupaxjong/etc/issues/1#issue-684137669
+
 run regedit
 
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\ShellIconOverlayIdentifiers
