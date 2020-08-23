@@ -2,7 +2,7 @@
 
 git, svn 같은것들 아이콘이 오버레이 되지 않을때 레지스트리를 수정한다.
 
-https://github.com/pupaxjong/etc/issues/1#issue-684137669
+![레지스트리 수정](https://user-images.githubusercontent.com/66294421/90974119-22683880-e563-11ea-87d3-5ab865df1ff1.png)
 
 run regedit
 
