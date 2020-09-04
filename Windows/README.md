@@ -1,8 +1,9 @@
 ## IconShellOverlay
-```
-git, svn 같은것들 아이콘이 오버레이 되지 않을때 레지스트리를 수정한다.
 
 <img src="https://user-images.githubusercontent.com/66294421/90974119-22683880-e563-11ea-87d3-5ab865df1ff1.png" width="90%"></img>
+
+```
+git, svn 같은것들 아이콘이 오버레이 되지 않을때 레지스트리를 수정한다.
 
 run regedit
 
