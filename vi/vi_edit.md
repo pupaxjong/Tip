@@ -139,3 +139,7 @@ dH = 화면의 시작까지 삭제
 dL = 화면의 나머지 삭제
 J = 커서와 다음 단어의 공백을 모두 삭제
 ```
+
+# 참고 : 
+https://inpages.tistory.com/124   
+https://vim.rtorr.com/lang/ko/
