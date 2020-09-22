@@ -1,1 +1,3 @@
 [1. 맥용 소스트리에서 비공개 서브 모듈 pull 되지 않을때](git.md)   
+
+###sshpass 설치 : brew install hudochenkov/sshpass/sshpass
