@@ -15,4 +15,10 @@
   
 포트 오픈
   > sudo iptables -I INPUT 1 -p tcp --dport 3000 -j ACCEPT
+
+포트 삭제
+  > sudo iptables -D INPUT -p tcp --dport 3000 -j ACCEPT
+
+조회하기
+  iptables -L -v
 ```
