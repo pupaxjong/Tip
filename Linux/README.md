@@ -12,6 +12,7 @@
 포트 확인
   > netstat -nap    <- 풀로 보여줌
   > netstat -nap | grep LISTEN  ,   netstat -nap | 22 ( 22 번 포트에 대해서만 나옴 )
+  > netstat -tnlp
   
 포트 오픈
   > sudo iptables -I INPUT 1 -p tcp --dport 3000 -j ACCEPT
