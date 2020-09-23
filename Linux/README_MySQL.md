@@ -25,7 +25,19 @@ libhtml-template-perl 패키지가 없을때 설치
 $ sudo apt update -y
 $ sudo apt install -y libhtml-template-perl
 
-5.6 버전 설치
+아래 이유로 설치가 안됨..
+The following packages have unmet dependencies:
+ mysql-server-5.6 : Depends: initscripts but it is not installable
+                    Depends: sysv-rc (>= 2.88dsf-24) but it is not installable or
+                             file-rc (>= 0.8.16) but it is not installable
+
+이것도 안됨...
+https://stackoverflow.com/questions/62382968/install-mysql-5-6-on-ubuntu-20-04
+
+# 안됨.
+$ sudo aptitude install mysql-server-5.6
+
+5.6 버전 설치 - 안됨.
 $ sudo add-apt-repository 'deb http://archive.ubuntu.com/ubuntu trusty universe'
 $ sudo apt-get install mysql-server-5.6
 $ sudo apt-get install mysql-client-5.6
