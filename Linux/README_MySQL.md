@@ -34,6 +34,9 @@ The following packages have unmet dependencies:
 이것도 안됨...
 https://stackoverflow.com/questions/62382968/install-mysql-5-6-on-ubuntu-20-04
 
+이것도 안됨.
+https://info-tech.tistory.com/35
+
 # 안됨.
 $ sudo aptitude install mysql-server-5.6
 
