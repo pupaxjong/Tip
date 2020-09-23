@@ -32,6 +32,7 @@ $ sudo apt-get install mysql-client-5.6
 $ sudo service mysql restart
 ```
 
+### 사용자 계정 추가
 ```
 사용자 계정 추가
 $ use mysql;
@@ -53,4 +54,27 @@ $ sudo ufw disable
 $ sudo ufw status verbose
 특정 포트만 허용
 $ sudo ufw allow 22
+```
+
+### UTF -8 로 설정하기
+```
+$ vi /etc/mysql/my.cnf
+
+[client]
+default-character-set=utf8
+
+[mysqld]
+character-set-client-handshake = FALSE
+init_connect="SET collation_connection = utf8_general_ci"
+init_connect="SET NAMES utf8"
+character-set-server = utf8
+
+[mysql]
+default-character-set=utf8
+
+[mysqldump]
+default-character-set = utf8
+
+변경후
+$ sudo service mysql restart
 ```
