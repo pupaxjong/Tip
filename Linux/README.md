@@ -7,6 +7,13 @@
   ssh-keygen -R [IP (대상 호스트) or DomainName]
 ```
 
+### scp 패스워드 자동 입력하기
+```
+$ sudo apt install sshpass
+$ sshpass -p 'password' scp -r filename  xxx@ip/path/
+```
+
+
 ##포트 확인, 오픈
 ```
 포트 확인
@@ -22,4 +29,9 @@
 
 조회하기
   iptables -L -v
+```
+
+### log 파일 보기
+```
+$ tail /xxx/xxx.log -n 100   : 마지막 100 개만 보여주기..
 ```
