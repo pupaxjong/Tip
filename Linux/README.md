@@ -13,8 +13,16 @@ $ sudo apt install sshpass
 $ sshpass -p 'password' scp -r filename  xxx@ip/path/
 ```
 
+### 메모리 상태 확인
+```
+$ free -m
 
-##포트 확인, 오픈
+$ top -o +%MEM
+
+$ sudo slabtop -sc
+```
+
+### 포트 확인, 오픈
 ```
 포트 확인
   > netstat -nap    <- 풀로 보여줌
