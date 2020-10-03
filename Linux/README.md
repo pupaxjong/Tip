@@ -13,7 +13,7 @@ $ sudo deluser 'newuser'
    옵션 : --remove-home, --remove-all-files  : 홈 디렉토리와 소유중인 파일을 모두 삭제.(중요한 파일은 백업 한후)
 
 관리자 명령 사용할수 있게 하기
-$ sudo usermod -aG sudo tester
+$ sudo usermod -aG sudo '계정'
 ```
 
 ## scp 전송 에러 (Host key verification failed)
