@@ -58,3 +58,5 @@ $ sudo slabtop -sc
 ```
 $ tail /xxx/xxx.log -n 100   : 마지막 100 개만 보여주기..
 ```
+
+### ftp 서버 설치 : http://magic.wickedmiso.com/97   
