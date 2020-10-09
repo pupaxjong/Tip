@@ -64,8 +64,13 @@ $ tail /xxx/xxx.log -n 100   : 마지막 100 개만 보여주기..
 
 ### 일정시간마다 메모리 체크
 ```
-#!/bin/bash
+사용법 : $ ./check_memory.sh xxx 10
+   $1 : 대상이름
+   $2 : 루트 시간(초단위)
+   
+$ vi check_memory.sh
 
+#!/bin/bash
 
 echo
 echo "ex) $0        : 1 second loop"
