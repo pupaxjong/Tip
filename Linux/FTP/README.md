@@ -16,6 +16,5 @@ $ sudo service vsftpd restart
 21, 5000-5110
 ```
 
-### 500 접속 에러 대응
-https://shaeod.tistory.com/936   
+### 500 접속 에러 대응 : https://shaeod.tistory.com/936   
 
