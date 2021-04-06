@@ -57,9 +57,16 @@ $ sudo slabtop -sc
 ### log 파일 보기
 ```
 $ tail /xxx/xxx.log -n 100   : 마지막 100 개만 보여주기..
+$ tail -F xxx.log            : 실시간 로그 보기
 ```
 
-### ftp 서버 설치 : http://magic.wickedmiso.com/97   
+
+### 실행중인 데몬 확인.
+```
+$ service --status-all                : (+) 실행중인 데몬, (-) 실행되고 있지 않은 데몬.
+$ service --status-all | grep +       : 실행중인 데몬들만 나옴.
+$ service --status-all | grep ssh     : ssh 가 실행중인지 확인.
+```
 
 
 ### 일정시간마다 메모리 체크
@@ -90,3 +97,6 @@ echo "";
 sleep $2; done
 
 ```
+
+
+### ftp 서버 설치 : http://magic.wickedmiso.com/97   
