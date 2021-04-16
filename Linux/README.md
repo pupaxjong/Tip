@@ -1,6 +1,6 @@
 [1. '\r': command not found - 쉘 스크립트 실행 오류](CarriageReturn_CommandNotFound.md  "'\r': command not found - 쉘 스크립트 실행 오류시 해결법")   
 
-## 계정 추가 / 삭제 하기
+# 계정 추가 / 삭제 하기
 ```
 root 계정 패스워드 변경하기
 $ sudo passwd root
@@ -19,7 +19,17 @@ $ sudo deluser 'newuser'
 $ sudo usermod -aG sudo '계정'
 ```
 
-## scp 전송 에러 (Host key verification failed)
+## sudo 권한 설정
+```
+$ sudo vi /etc/group
+sudo:x:27:xxx,bbb
+
+xxx,bbbb 식으로 추가하면 됨.
+```
+
+
+
+# scp 전송 에러 (Host key verification failed)
 ```
   로컬에서 실행.
   ssh-keygen -R [IP (대상 호스트) or DomainName]
@@ -31,7 +41,7 @@ $ sudo apt install sshpass
 $ sshpass -p 'password' scp -r filename  xxx@ip/path/
 ```
 
-### 메모리 상태 확인
+# 메모리 상태 확인
 ```
 $ free -m
 
@@ -40,7 +50,7 @@ $ top -o +%MEM
 $ sudo slabtop -sc
 ```
 
-### 포트 확인, 오픈
+# 포트 확인, 오픈
 ```
 포트 확인
   > netstat -nap    <- 풀로 보여줌
@@ -57,14 +67,14 @@ $ sudo slabtop -sc
   iptables -L -v
 ```
 
-### log 파일 보기
+# log 파일 보기
 ```
 $ tail /xxx/xxx.log -n 100   : 마지막 100 개만 보여주기..
 $ tail -F xxx.log            : 실시간 로그 보기
 ```
 
 
-### 실행중인 데몬 확인.
+# 실행중인 데몬 확인.
 ```
 $ service --status-all                : (+) 실행중인 데몬, (-) 실행되고 있지 않은 데몬.
 $ service --status-all | grep +       : 실행중인 데몬들만 나옴.
@@ -72,7 +82,7 @@ $ service --status-all | grep ssh     : ssh 가 실행중인지 확인.
 ```
 
 
-### 일정시간마다 메모리 체크
+# 일정시간마다 메모리 체크
 참고 : https://webnautes.tistory.com/1424   
 ```
 사용법 : $ ./check_memory.sh xxx 10
@@ -102,4 +112,4 @@ sleep $2; done
 ```
 
 
-### ftp 서버 설치 : http://magic.wickedmiso.com/97   
+# ftp 서버 설치 : http://magic.wickedmiso.com/97   
