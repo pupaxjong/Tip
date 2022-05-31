@@ -113,3 +113,10 @@ sleep $2; done
 
 
 # ftp 서버 설치 : http://magic.wickedmiso.com/97   
+
+# 덤프
+```
+$ gdb -c 덤프이름
+실행 하고 bt 치면
+터진데 콜스택 나옴
+```
