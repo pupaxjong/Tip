@@ -12,3 +12,6 @@
 
 
 # [VI Edit](vi/README.md)
+
+# 리눅스 관련
+[gdb - 실행 중인 프로세스 & 스레드 디버깅 하기](https://kukuta.tistory.com/202)
