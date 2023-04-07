@@ -65,6 +65,9 @@
 - ⇧ ⌥ ↓ or ↑ (Shift + Alt + ↓ / ↑) : 라인 복제
 - ⌥ Click (Alt + Click) : 커서 삽입 (클릭한 위치에)
 - ⌥ ⌘ ↑ or ↓ (Ctrl + Alt + ↑ / ↓) : 커서 삽입 (위,아래 라인에)
+  - 다중 선택   
+    - Ctrl + Alt + ↑ / ↓ 
+    - Shift + 방향키
 - ⇧ ⌥ I (Shift + Alt + I) : 커서 삽입 (블록 지정한 영역에)
 - ⌘ U (Ctrl + U) : 마지막 커서 명령 취소
 - ⇧ ⌘ L (Ctrl + Shift + L) : 현재 단어와 똑같은 모든 단어 선택
