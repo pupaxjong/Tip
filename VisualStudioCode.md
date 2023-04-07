@@ -1,5 +1,7 @@
 # 비주얼 스튜디오 코드(Visual Studio Code) 단축키
 
+### [기타 참고 사이트](https://inpa.tistory.com/entry/VS-Code-%E2%8F%B1%EF%B8%8F-%EC%9C%A0%EC%9A%A9%ED%95%9C-%EB%8B%A8%EC%B6%95%ED%82%A4-%EC%A0%95%EB%A6%AC#ctrl_+_%60%EB%B0%B1%ED%8B%B1__%ED%84%B0%EB%AF%B8%EB%84%90_%EC%97%B4%EA%B8%B0/%EB%8B%AB%EA%B8%B0)
+
 ## 목차
 -[mac 키 정의](#mac-키-정의)   
 -[일반](#일반)   
@@ -16,6 +18,9 @@
 
 ## macOS 키 (Windows 키)
 - ( ) 가 Windows 용임.
+
+### 키 이름.
+- ` : 백틱   
 
 ### mac 키 정의
 - ⇧ : shift
