@@ -18,3 +18,10 @@ CMD 를 관리자 권한으로 실행.
 > sfc /scannow
   시스템 검사하여 시스템 손상 복구를 완료한다.
 ```
+
+
+# Process Explorer 실행
+- [참조](https://yjshin.tistory.com/632)
+- Windows Key + R : \\live.sysinternals.com\Tools\procexp.exe
+![](./process_explorer.png)
+
