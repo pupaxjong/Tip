@@ -53,6 +53,9 @@ $ sudo slabtop -sc
 
 # 포트 확인, 오픈
 ```
+net-tools 설치.
+$ sudo apt install net-tools
+
 포트 확인
   > netstat -nap    <- 풀로 보여줌
   > netstat -nap | grep LISTEN  ,   netstat -nap | 22 ( 22 번 포트에 대해서만 나옴 )
