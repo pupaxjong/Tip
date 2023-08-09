@@ -14,13 +14,14 @@ $ sudo passwd '계정'
 계정 삭제
 $ sudo deluser 'newuser'
    옵션 : --remove-home, --remove-all-files  : 홈 디렉토리와 소유중인 파일을 모두 삭제.(중요한 파일은 백업 한후)
-
-관리자 명령 사용할수 있게 하기
-$ sudo usermod -aG sudo '계정'
 ```
 
 ## sudo 권한 설정
 ```
+자동설정 - 관리자 명령 사용할수 있게 하기
+$ sudo usermod -aG sudo '계정'
+
+수동 설정시
 $ sudo vi /etc/group
 sudo:x:27:xxx,bbb
 
