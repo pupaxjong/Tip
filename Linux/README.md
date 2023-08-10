@@ -45,6 +45,22 @@ PasswordAuthentication no  -> yes  로 바꿔야 할지도 모름.
 <br><br>
 
 # scp
+
+## 공개키 사용시 권한 에러 나는 경우 : 공개키에 너무 많은 권한이 부여 되어서 생기는 에러.
+- ssh, scp 사용시 나오는 에러.
+- 계정의 홈폴더/.ssh/ 폴더에 공개키 옮긴후 권한 설정.
+- 리눅스에서 윈도우 폴더에 있는 공개키 사용시 에러 남. 리눅스의 폴더에 공개키를 복사한후 사용하면 됨.
+```
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0555 for '{pem_key_name}.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "{pem_key_name}.pem": bad permissions
+ubuntu@{public IPv4}: Permission denied (publickey).
+```
+
 ### 아마존인 경우 (Ms 에저나 기타 다른곳도 비슷할듯)
 - 공개키.pem 사용시 공개키 파일이 리눅스인 경우 리눅스의 폴더에 복사하고 권한 설정을 해야 한다.
 - 게정 사용자의 홈 디렉토리 : ~/   
