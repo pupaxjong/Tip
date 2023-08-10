@@ -28,7 +28,11 @@ sudo:x:27:xxx,bbb
 xxx,bbbb 식으로 추가하면 됨.
 ```
 
-# ssh 관련 설정 : MS azure 가상 머신일때
+-------------------------------------------
+<br><br>
+
+# ssh 관련 설정 : MS azure 가상 머신일때 
+- ssh 접속시 공개키 사용안하고 접속 할때용인듯. - 확인해보고 수정할것
 ```
 $ sudo vim /etc/ssh/sshd_config
 
@@ -37,11 +41,25 @@ PubkeyAuthentication yes
 
 PasswordAuthentication no  -> yes  로 바꿔야 할지도 모름.
 ```
+-------------------------------------------
+<br><br>
 
-# scp 전송 에러 (Host key verification failed)
+# scp
+### 아마존인 경우 (Ms 에저나 기타 다른곳도 비슷할듯)
+- 공개키.pem 사용시 공개키 파일이 리눅스인 경우 리눅스의 폴더에 복사하고 권한 설정을 해야 한다.
+- 게정 사용자의 홈 디렉토리 : ~/   
+  ~/.ssh/ 폴더에 공개키 복사할것.
+  윈도우, 리눅스 각각 홈 폴더에 복사해 놓을것.
 ```
-  로컬에서 실행.
-  ssh-keygen -R [IP (대상 호스트) or DomainName]
+윈도우 : c:/Users/xxx/.ssh/
+리눅스 : ~/.ssh/
+- 윈도우 터미널이나, 리눅스 에서 cd ~/ 하면 해당 홈폴더로 이동한다.
+```
+
+- 공개키 권한 변경하기
+```
+$ cd ~/.ssh
+$ chmod 400 xxx.pem
 ```
 
 ### scp 패스워드 자동 입력하기
@@ -50,14 +68,14 @@ $ sudo apt install sshpass
 $ sshpass -p 'password' scp -r filename  xxx@ip/path/
 ```
 
-# 메모리 상태 확인
+### scp 전송 에러 (Host key verification failed)
 ```
-$ free -m
-
-$ top -o +%MEM
-
-$ sudo slabtop -sc
+  로컬에서 실행.
+  ssh-keygen -R [IP (대상 호스트) or DomainName]
 ```
+
+-------------------------------------------
+<br><br>
 
 # 포트 확인, 오픈
 ```
@@ -79,11 +97,8 @@ $ sudo apt install net-tools
   iptables -L -v
 ```
 
-# log 파일 보기
-```
-$ tail /xxx/xxx.log -n 100   : 마지막 100 개만 보여주기..
-$ tail -F xxx.log            : 실시간 로그 보기
-```
+-------------------------------------------
+<br><br>
 
 
 # 실행중인 데몬 확인.
@@ -93,6 +108,29 @@ $ service --status-all | grep +       : 실행중인 데몬들만 나옴.
 $ service --status-all | grep ssh     : ssh 가 실행중인지 확인.
 ```
 
+-------------------------------------------
+<br><br>
+
+# 메모리 상태 확인
+```
+$ free -m
+
+$ top -o +%MEM
+
+$ sudo slabtop -sc
+```
+
+-------------------------------------------
+<br><br>
+
+-------------------------------------------
+<br><br>
+
+# log 파일 보기
+```
+$ tail /xxx/xxx.log -n 100   : 마지막 100 개만 보여주기..
+$ tail -F xxx.log            : 실시간 로그 보기
+```
 
 # 일정시간마다 메모리 체크
 참고 : https://webnautes.tistory.com/1424   
@@ -123,8 +161,13 @@ sleep $2; done
 
 ```
 
+-------------------------------------------
+<br><br>
 
 # ftp 서버 설치 : http://magic.wickedmiso.com/97   
+
+-------------------------------------------
+<br><br>
 
 # 덤프
 ```
