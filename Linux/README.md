@@ -28,7 +28,18 @@ sudo:x:27:xxx,bbb
 xxx,bbbb 식으로 추가하면 됨.
 ```
 
-# scp 전송 에러 (Host key verification failed)
+# scp 관련 설정
+```
+$ sudo vim /etc/ssh/sshd_config
+
+PermitRootLogin no
+PubkeyAuthentication yes
+
+
+PasswordAuthentication no  -> yes  로 바꿔야 할지도 모름.
+```
+
+## scp 전송 에러 (Host key verification failed)
 ```
   로컬에서 실행.
   ssh-keygen -R [IP (대상 호스트) or DomainName]
