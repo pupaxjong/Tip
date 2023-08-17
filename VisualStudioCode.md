@@ -2,8 +2,11 @@
 
 ### [기타 참고 사이트](https://inpa.tistory.com/entry/VS-Code-%E2%8F%B1%EF%B8%8F-%EC%9C%A0%EC%9A%A9%ED%95%9C-%EB%8B%A8%EC%B6%95%ED%82%A4-%EC%A0%95%EB%A6%AC#ctrl_+_%60%EB%B0%B1%ED%8B%B1__%ED%84%B0%EB%AF%B8%EB%84%90_%EC%97%B4%EA%B8%B0/%EB%8B%AB%EA%B8%B0)   
 
-### [단축키 설정 - 파일 -> 기본설정 -> 바로가기 키 : CTRL+K && CTRL+S](https://rudalskim.tistory.com/96)   
-### [단축키 설정 - File -> Preferences -> Keyboard Shortcuts : CTRL+K && CTRL+S](https://rudalskim.tistory.com/96)   
+### [단축키 설정](https://rudalskim.tistory.com/96)   
+- 파일(File) -> 기본설정(Preferences) -> 바로가기 키(Keyboard Shortcuts)
+- 단축키 : CTRL+K && CTRL+S
+
+
 
 ### 단축키
 - [Winows PDF](https://go.microsoft.com/fwlink/?linkid=832145)   
