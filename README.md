@@ -20,3 +20,6 @@
 # Visual Studio Code
 - [Visual Studio Code hotkey](VisualStudioCode.md)
 - [추천 Extension](https://dubuholic.tistory.com/142)
+
+## [Settings Sync](https://geonlee.tistory.com/243)
+
