@@ -17,4 +17,6 @@
 [gdb - 실행 중인 프로세스 & 스레드 디버깅 하기](https://kukuta.tistory.com/202)
 
 
-# [Visual Studio Code hotkey](VisualStudioCode.md)
+# Visual Studio Code
+- [Visual Studio Code hotkey](VisualStudioCode.md)
+- [추천 Extension](https://dubuholic.tistory.com/142)
