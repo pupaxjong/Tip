@@ -25,12 +25,14 @@ iTerm
 // 설치 확인용
 brew docter
 
-// 자동 업데이트 켜기
+// 필요하면.. 자동 업데이트 켜기
 brew tap homebrew/autoupdate
 ```
 
 - 기본 설치할 패키지
 ```
+brew install iterm2
+
 // git
 brew install git
 
