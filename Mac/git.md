@@ -29,7 +29,7 @@ ssh -T git@github.com
 ```
 
 ## Clone
-- submodule 과 한번에 Clone 하기
+### submodule 과 한번에 Clone 하기
 ```sh
 git clone --recurse-submodules <https://github.com/~>
 
@@ -38,7 +38,7 @@ git submodule update --init                       # 이 명령으로 init과 upd
 git submodule update --init <submodule 경로>
 ```
   
-- Clone 한후 submodule pull 받기
+### Clone 한후 submodule pull 받기   
 ```sh
 git clone https://github.com/GIT_ID/REPO_NAME.git
 
