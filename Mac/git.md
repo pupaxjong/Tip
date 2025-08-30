@@ -28,6 +28,35 @@ ssh-add -l
 ssh -T git@github.com
 ```
 
+## Clone
+- submodule 과 한번에 Clone 하기
+```sh
+git clone --recurse-submodules <https://github.com/~>
+
+# git clone 이후 init, update 한 번에 하기
+git submodule update --init                       # 이 명령으로 init과 update 한 번에 가능하다.
+git submodule update --init <submodule 경로>
+```
+  
+- Clone 한후 submodule pull 받기
+```sh
+git clone https://github.com/GIT_ID/REPO_NAME.git
+
+# submodule이 있는 폴더로 이동한다.
+git submodule init
+# 해당 명령어로 git submodule을 초기화 해줘야 그 안에서 pull을 할 수 있다.  
+# 이걸 해줘야 submodule 별도의 git remote가 연결되는 것 같다.
+
+git submodule update # submodule pull 가져오는 명령어
+git submodule update --remote
+```
+
+### submodule 만드는 법
+```sh
+git submodule add <private repository 주소>
+```
+
+
 ### ✅ 원인 3: 리모트 URL이 SSH 형식인데 HTTPS를 써야 하는 경우
 - 만약 SSH 설정이 귀찮다면, HTTPS 방식으로 리모트 URL을 변경할 수도 있습니다:
 - REPO_NAME 부분은 본인의 실제 리포지토리 이름으로 바꿔주세요.
@@ -36,6 +65,7 @@ git remote set-url origin https://github.com/GIT_ID/REPO_NAME.git
 ```
 
 ## 퍼미션 에러날때
+- [서브뮬과 동시에 받는법](https://turtle-hwan.tistory.com/entry/Git-Github-git-submodule-pull-%EB%B0%9B%EC%95%84%EC%98%A4%EB%8A%94-%EB%B0%A9%EB%B2%95-%EB%B0%8F-%EC%9A%A9%EB%8F%84)
 - [참고](https://realzzu.tistory.com/115)   
 
 ```sh
