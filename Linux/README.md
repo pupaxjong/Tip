@@ -191,3 +191,30 @@ $ gdb -c 덤프이름
 실행 하고 bt 치면
 터진데 콜스택 나옴
 ```
+
+<br><br>   
+
+# 우분투 서버에서 포트 열기 : ufw (리부팅 되더라도 유지됨)
+```
+# ufw (영구저장됨) 설치. 
+$ sudo apt install ufw
+
+# 포트 열기
+$ sudo ufw allow 80/tcp
+
+# 확인
+$ sudo ufw status
+
+
+# ====== 리부팅 되면 초기화 됨.  =============
+# 설치하기.
+$ sudo apt install iptables
+# 리부팅되더라도 설정값 유지하기 위해서..
+$ sudo apt install iptables-persistent
+
+# 포트 열기
+$ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+
+# 규칙 저장
+$ sudo netfilter-persistent save
+```
