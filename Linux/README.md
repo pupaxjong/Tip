@@ -198,12 +198,14 @@ $ gdb -c 덤프이름
 ```
 # ufw (영구저장됨) 설치. 
 $ sudo apt install ufw
+$ sudo ufw enable
 
 # 포트 열기
 $ sudo ufw allow 80/tcp
 
 # 확인
 $ sudo ufw status
+
 
 
 # ====== 리부팅 되면 초기화 됨.  =============
