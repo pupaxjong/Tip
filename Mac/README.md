@@ -92,7 +92,48 @@ Homebrew는 이미 빌드된 바이너리를 설치하므로 macOS 10.15에서�
 - 여러 버전 관리가 필요하다면 → `pyenv install 3.11.x` 사용  
 - 또는 → `conda`, `docker`로 환경 분리
 
+---
 
+<br>   
+
+
+## 🔧 brew 로 설치후 패스 연결 설정 방법
+
+```bash
+# zsh 사용자일 경우
+echo 'export PATH="/usr/local/opt/python@3.12/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+
+# bash 사용자일 경우
+echo 'export PATH="/usr/local/opt/python@3.12/bin:$PATH"' >> ~/.bash_profile
+source ~/.bash_profile
+```
+
+---
+
+## 🔍 확인
+
+```bash
+which python3
+python3 --version
+```
+
+**예상 결과:**
+
+```bash
+/usr/local/opt/python@3.12/bin/python3
+Python 3.12.x
+```
+
+→ 이렇게 나오면 성공적으로 Homebrew 버전이 우선 적용된 거야.
+
+---
+
+## 💡 참고
+
+- Homebrew로 설치된 Python은 `/usr/local/opt/python@3.12/bin/python3`에 위치해.
+- macOS 기본 Python은 `/usr/bin/python3`에 위치함.
+- `PATH`에서 앞쪽에 있는 경로가 우선 적용되므로, 우리가 원하는 Python을 앞에 넣는 게 핵심이야.
 
 
 
