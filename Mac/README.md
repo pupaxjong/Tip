@@ -47,7 +47,57 @@ brew bat
 # 🐍 macOS에서 pyenv로 Python 관리하기
 
 Python 버전을 유연하게 설치하고 관리하기 위해 사용하는 `pyenv`의 설치 및 설정 방법을 정리합니다.
+- 맥OS 11. 이상에서만 사용가능.
+- 맥OS 11 미만이라면
+   - pyenv install python3.11 : 이하 버전을 설치 해야 한다.
+   - 아니면 pyenv 를 사용하지 말고
+      - brew install python@3.12  -> 원하는 버전으로 설치.
 
+## ✅ 왜 `brew install python@3.13`은 되고 `pyenv install 3.12.3`은 안 되는가?
+
+| 항목         | Homebrew 설치 (`brew install`)       | pyenv 설치 (`pyenv install`)       |
+|--------------|--------------------------------------|-------------------------------------|
+| 방식         | 미리 컴파일된 바이너리 설치          | 소스코드를 직접 컴파일              |
+| 의존성       | Homebrew가 자동으로 해결              | 시스템 SDK와 직접 연결됨            |
+| macOS 호환성 | 낮은 버전에서도 설치 가능             | 최신 SDK 없으면 빌드 실패           |
+| 속도         | 빠름 (바이너리 다운로드)              | 느림 (소스 빌드)                    |
+| 설치 위치    | `/opt/homebrew/` 또는 `/usr/local/` | `~/.pyenv/versions/`                |
+| 버전 관리    | 단일 버전만 설치됨                    | 여러 버전 동시에 설치 가능          |
+
+---
+
+### 🔍 핵심 차이
+
+Homebrew는 이미 빌드된 바이너리를 설치하므로 macOS 10.15에서도 Python 3.13을 설치할 수 있어.
+
+반면 pyenv는 소스코드를 직접 컴파일하기 때문에, macOS SDK가 최신이 아니면 빌드가 깨져.
+
+그래서 `pyenv install 3.12.3`은 실패하고, `brew install python@3.13`은 성공하는 거야.
+
+---
+
+### 💡 그럼 pyenv 없이 brew만 써도 될까?
+
+가능은 해. 하지만 단점도 있어:
+
+- `brew install python@3.13`은 **하나의 버전만 설치 가능**해.
+- 여러 프로젝트에서 다른 버전의 Python을 써야 할 경우 **버전 충돌**이 생길 수 있어.
+- `pyenv`는 **프로젝트별로 버전 지정**이 가능하고, `global`, `local`, `shell` 설정도 자유로워.
+
+---
+
+### 🧭 추천 흐름 (macOS 10.15 기준)
+
+- 최신 Python이 꼭 필요하다면 → `brew install python@3.13` 사용  
+- 여러 버전 관리가 필요하다면 → `pyenv install 3.11.x` 사용  
+- 또는 → `conda`, `docker`로 환경 분리
+
+
+
+
+
+
+<br>   
 ---
 
 ## 1. pyenv 설치
