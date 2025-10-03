@@ -39,3 +39,46 @@ brew install git
 // cat 대용. 소스코드가 이쁘게 나옴.
 brew bat
 ```
+
+<br>    
+
+
+# 파이썬 설치
+## 🐍 pyenv 명령어 설명
+
+Python 버전을 유연하게 관리하기 위해 사용하는 `pyenv`의 주요 명령어 3가지에 대한 설명입니다.
+
+---
+
+### 1. `brew install pyenv`
+
+**역할:**  
+Homebrew를 통해 `pyenv`를 설치하는 명령어입니다.  
+`pyenv`는 여러 버전의 Python을 설치하고 관리할 수 있는 도구로, 시스템에 영향을 주지 않고 원하는 버전을 자유롭게 사용할 수 있게 해줍니다.
+
+---
+
+### 2. `pyenv install 3.12.2`
+
+**역할:**  
+`pyenv`를 사용하여 Python 3.12.2 버전을 설치합니다.  
+설치된 버전은 `~/.pyenv/versions/3.12.2` 경로에 저장되며, macOS 기본 Python과는 별도로 독립적으로 작동합니다.
+
+---
+
+### 3. `pyenv global 3.12.2`
+
+**역할:**  
+기본적으로 사용할 Python 버전을 3.12.2로 설정합니다.  
+이후 터미널에서 `python`, `python3`, `pip` 명령어를 입력하면 pyenv가 지정한 3.12.2 버전을 참조하게 됩니다.  
+설정은 `~/.pyenv/version` 파일에 저장됩니다.
+
+---
+
+### ✅ 확인 명령어
+
+```bash
+python --version
+python3 --version
+which python3
+```
