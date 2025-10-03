@@ -44,41 +44,89 @@ brew bat
 
 
 # 파이썬 설치
-## 🐍 pyenv 명령어 설명
+# 🐍 macOS에서 pyenv로 Python 관리하기
 
-Python 버전을 유연하게 관리하기 위해 사용하는 `pyenv`의 주요 명령어 3가지에 대한 설명입니다.
-
----
-
-### 1. `brew install pyenv`
-
-**역할:**  
-Homebrew를 통해 `pyenv`를 설치하는 명령어입니다.  
-`pyenv`는 여러 버전의 Python을 설치하고 관리할 수 있는 도구로, 시스템에 영향을 주지 않고 원하는 버전을 자유롭게 사용할 수 있게 해줍니다.
+Python 버전을 유연하게 설치하고 관리하기 위해 사용하는 `pyenv`의 설치 및 설정 방법을 정리합니다.
 
 ---
 
-### 2. `pyenv install 3.12.2`
+## 1. pyenv 설치
 
-**역할:**  
+```bash
+brew install pyenv
+```
+
+**설명:**  
+Homebrew를 통해 `pyenv`를 설치합니다.  
+`pyenv`는 여러 버전의 Python을 시스템에 영향을 주지 않고 독립적으로 설치하고 관리할 수 있게 해주는 도구입니다.
+
+---
+
+## 2. 셸 설정에 pyenv 초기화 추가
+
+**설명:**  
+터미널이 `pyenv`를 인식하도록 환경 설정 파일에 초기화 코드를 추가합니다.
+
+### zsh 사용자 (`~/.zshrc`)
+
+```bash
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init --path)"' >> ~/.zshrc
+echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+```
+
+### bash 사용자 (`~/.bash_profile`)
+
+```bash
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(pyenv init --path)"' >> ~/.bash_profile
+echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
+```
+
+**적용 방법:**  
+설정 후 터미널을 재시작하거나 아래 명령어를 실행합니다:
+
+```bash
+source ~/.zshrc        # zsh 사용자
+source ~/.bash_profile # bash 사용자
+```
+
+---
+
+## 3. 원하는 Python 버전 설치
+
+```bash
+pyenv install 3.12.2
+```
+
+**설명:**  
 `pyenv`를 사용하여 Python 3.12.2 버전을 설치합니다.  
 설치된 버전은 `~/.pyenv/versions/3.12.2` 경로에 저장되며, macOS 기본 Python과는 별도로 독립적으로 작동합니다.
 
 ---
 
-### 3. `pyenv global 3.12.2`
+## 4. 기본 Python 버전 설정
 
-**역할:**  
+```bash
+pyenv global 3.12.2
+```
+
+**설명:**  
 기본적으로 사용할 Python 버전을 3.12.2로 설정합니다.  
 이후 터미널에서 `python`, `python3`, `pip` 명령어를 입력하면 pyenv가 지정한 3.12.2 버전을 참조하게 됩니다.  
 설정은 `~/.pyenv/version` 파일에 저장됩니다.
 
 ---
 
-### ✅ 확인 명령어
+## ✅ 확인 명령어
 
 ```bash
 python --version
 python3 --version
 which python3
 ```
+
+**결과:**  
+출력 결과가 `Python 3.12.2`이고 경로가 `~/.pyenv/...`이면 설정 성공입니다.
