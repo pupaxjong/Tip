@@ -127,6 +127,12 @@ Python 3.12.x
 
 → 이렇게 나오면 성공적으로 Homebrew 버전이 우선 적용된 거야.
 
+- 만약 안된다면 수동으로 링크 파일 생성하기
+```bash
+sudo ln -sf /usr/local/opt/python@3.12/bin/python3 /usr/local/bin/python3
+sudo ln -sf /usr/local/opt/python@3.12/bin/pip3 /usr/local/bin/pip3
+```
+
 ---
 
 ## 💡 참고
