@@ -1,7 +1,7 @@
 # 🧠 Git 터미널 사용법 완전 정리 (기본부터 고급까지)
 
 Git을 터미널에서 사용할 때 꼭 알아야 할 명령어들을 한눈에 보기 좋게 정리했습니다.  
-기본 사용법부터 브랜치 관리, 커밋 되돌리기, 서브모듈, 히스토리 탐색, `.gitignore`, `merge vs rebase`, GitHub Actions, CI/CD, Git Flow 전략, 추가 고급 기능까지 모두 포함되어 있어요.
+기본 사용법부터 브랜치 관리, 커밋 되돌리기, 서브모듈, 히스토리 탐색, `.gitignore`, `merge vs rebase`, GitHub Actions, CI/CD, Git Flow 전략, GitHub Pages, 고급 기능까지 모두 포함되어 있어요.
 
 ---
 
@@ -142,8 +142,6 @@ git checkout feature/login
 git rebase main
 ```
 
-> 협업 중이라면 `rebase`는 push 전에만 사용하고, 이미 공유된 브랜치에는 `merge`를 사용하는 것이 안전합니다.
-
 ---
 
 ## ⚙️ GitHub Actions & CI/CD 연동
@@ -224,6 +222,30 @@ git checkout -b hotfix/urgent-fix main
 
 ---
 
+## 🌐 GitHub Pages 배포
+
+정적 웹사이트를 GitHub 저장소에서 바로 배포할 수 있습니다.
+
+### 기본 방식
+
+1. 저장소 루트 또는 `docs/` 폴더에 `index.html` 파일 생성
+2. GitHub 저장소 → Settings → Pages → Source 선택
+   - `main` 브랜치의 `/docs` 또는 루트 선택
+3. 저장 후 `https://사용자명.github.io/저장소명` 주소로 접속
+
+### React/Vue/Svelte 프로젝트 배포 예시
+
+```bash
+npm run build
+git add dist
+git commit -m "배포용 빌드 추가"
+git subtree push --prefix dist origin gh-pages
+```
+
+> 또는 `gh-pages` 브랜치를 따로 만들어서 `npm run deploy`로 자동화 가능
+
+---
+
 ## 🧩 추가로 알아두면 좋은 고급 기능
 
 ```bash
@@ -248,12 +270,38 @@ git add design.psd
 git commit -m "Add large file with LFS"
 ```
 
-> GitHub에서 대용량 파일을 다룰 때 유용하며, `.gitattributes` 파일에 추적 패턴이 기록됩니다.
+> `.gitattributes`에 추적 패턴이 기록되며, GitHub에서 대용량 파일을 효율적으로 관리할 수 있습니다.
 
 ---
 
-## 🌐 GitHub Pages 배포
+## 🧠 Monorepo 전략
 
-정적 웹사이트를 GitHub 저장소에서 바로 배포할 수 있습니다.
+하나의 저장소에서 여러 프로젝트를 관리하는 방식입니다.
 
-1. `docs/` 폴더 또는 루트
+### 폴더 구조 예시
+
+```
+/apps
+  /web
+  /mobile
+/packages
+  /ui
+  /utils
+```
+
+### 도구 추천
+
+- `Nx`, `Turborepo`, `Lerna` 등으로 빌드/테스트/배포 자동화
+- `pnpm`의 workspace 기능으로 의존성 관리
+
+---
+
+## 📚 Git 문서화 팁
+
+- `README.md`: 프로젝트 소개, 설치 방법, 사용법
+- `CONTRIBUTING.md`: 기여 가이드
+- `CHANGELOG.md`: 버전별 변경사항 기록
+- `LICENSE`: 라이선스 명시
+
+---
+
