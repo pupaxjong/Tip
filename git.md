@@ -55,7 +55,8 @@ git push --set-upstream origin <브랜치명>  # 원격 브랜치 연결
 ```bash
 git submodule add <URL> <경로>          # 서브모듈 추가
 git submodule update --init --recursive # 서브모듈 초기화 및 다운로드
-git submodule update --remote           # 서브모듈 최신 커밋으로 갱신
+git submodule update --remote           # 서브모듈 최신 커밋으로 갱신. [.gitmodules] 파일에 [branch = main] 를 추가해야 된다.
+
 
 # 서브모듈 제거
 git config -f .gitmodules --remove-section submodule.<경로>
