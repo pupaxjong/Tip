@@ -44,6 +44,35 @@ git revert <커밋해시>           # 특정 커밋을 되돌리는 새 커밋 �
 
 ---
 
+## 🧠 Git에서 수정된 파일 되돌리는 방법
+
+```bash
+# 1️⃣ 수정만 했고 아직 add 안 했을 때
+git checkout -- <파일명>
+# 또는
+git restore <파일명>
+
+# 예시
+git checkout -- main.py
+
+# 2️⃣ 수정하고 add까지 했지만 commit은 안 했을 때
+git reset HEAD <파일명>      # add 취소
+git checkout -- <파일명>     # 수정 내용 되돌리기
+
+# 3️⃣ 이미 commit까지 했는데 되돌리고 싶을 때
+git revert HEAD              # 최근 커밋을 되돌리는 새 커밋 생성
+# 또는 (주의: 히스토리 변경)
+git reset --hard HEAD~1      # 최근 커밋을 완전히 삭제
+
+# 4️⃣ 전체 파일을 되돌리고 싶을 때
+git checkout -- .
+# 또는
+git restore .
+```
+
+---
+
+
 ## 🌿 브랜치 관리
 
 ```bash
