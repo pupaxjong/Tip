@@ -78,6 +78,7 @@ git restore .
 git branch                       # 브랜치 목록 확인
 git branch <브랜치명>            # 새 브랜치 생성
 git checkout <브랜치명>          # 브랜치 이동
+git checkout -b <새 브랜치 이름> [시작 지점]   # 브렌치 생성후 해당 브렌치로 이동.   git branch <브랜치명>  -> checkout <브랜치명> (git switch <브랜치명>) 을 한번에 하는 형식.
 git switch <브랜치명>            # 브랜치 이동 (추천 방식)
 git branch -d <브랜치명>         # 병합된 브랜치 삭제
 git branch -D <브랜치명>         # 병합되지 않아도 강제 삭제
