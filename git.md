@@ -189,6 +189,64 @@ git checkout feature/login
 git rebase main
 ```
 
+### merge 충돌시
+- 병합 중단하고 되돌리기
+만약 충돌 해결을 취소하고 싶다면:
+```bash
+git merge --abort
+```
+병합 전 상태로 돌아갑니다.
+
+- 🔍 보너스: 충돌 시 시각적 도구 활용   
+VSCode 같은 IDE에서는 충돌이 나면 다음과 같은 버튼이 떠요:   
+Accept Current Change (현재 브랜치 코드 유지)   
+Accept Incoming Change (병합 브랜치 코드 유지)   
+Accept Both Changes (둘 다 포함)   
+Compare Changes   
+이걸 클릭해서 손쉽게 해결할 수도 있습니다.   
+
+### ✅ 머지후 충돌이 았을때
+- 충돌난 파일에서 내꺼사용과 저장소꺼를 사용해야 할 경우가 있을 수 있으므로 편집기에서 개별 수정을 하는 것이 좋다.
+
+#### 충돌 후 수동으로 내 쪽 선택 : 일괄 변경이므로 신중하게 결정해야 한다.
+- 충돌 파일 확인
+```bash
+git status
+```
+
+- ~~~✅ 모든 파일에서 내 코드만 유지하고 싶다면, 아래 명령으로 상대 브랜치의 파일을 덮어씁니다:~~~
+```bash
+git checkout --ours .
+```
+특정 파일만: 파일마다 하는걸 추천.
+```bash
+git checkout --ours path/to/file
+```
+
+- ✅ 상대 브랜치(저장소 쪽) 코드 유지하기 : 병합 시 자동으로 상대 쪽(“theirs”) 유지
+```bash
+git merge 브랜치명 --strategy-option theirs
+```
+
+상대(저장소) 코드로 덮어쓰기
+```bash
+git checkout --theirs .
+```
+
+특정 파일만
+```bash
+git checkout --theirs path/to/file
+```
+
+- 덮어쓴 후 add & commit:
+```bash
+git add .
+git commit
+```
+
+이렇게 하면 충돌 표시는 사라지고, 내 코드 내용만 반영된 병합 커밋이 만들어집니다.
+
+
 ---
 
 ## ⚙️ GitHub Actions & CI/CD 연동
