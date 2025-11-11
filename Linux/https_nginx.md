@@ -47,6 +47,41 @@ sudo certbot --nginx -d n8n.example.com
 ```
 → 인증서 발급 후 자동으로 HTTPS 설정됨
 
+### ✅ 인증서 파일 확인
+```bash
+sudo ls /etc/letsencrypt/live/
+
+# 또는
+sudo ls /etc/letsencrypt/live/n8n.example.com/
+```
+
+### ✅ Nginx 설정 확인
+```bash
+sudo cat /etc/nginx/sites-enabled/n8n
+```
+- 아래처럼 나오면 성공
+```text
+listen 443 ssl;
+ssl_certificate /etc/letsencrypt/live/n8n.example.com/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/n8n.example.com/privkey.pem;
+```
+
+### ✅ Certbot 로그 확인
+```bash
+sudo cat /var/log/letsencrypt/letsencrypt.log | grep "certbot"
+```
+
+### ✅ 인증서 유효성 검사 (외부에서)
+```bash
+openssl s_client -connect n8n.example.com:443
+```
+
+### ✅ 브라우저에서 직접 확인
+- https://n8n.example.com 접속
+- 🔒 자물쇠 아이콘 클릭 → 인증서 정보 확인
+
+<br>   
+
 ## ✅ 5. n8n 환경 변수 설정
 컨테이너 실행 시 아래 환경 변수 추가:
 ```bash
