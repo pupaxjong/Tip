@@ -23,6 +23,16 @@ server {
     listen 80;
     server_name n8n.example.com;
 
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name n8n.example.com;
+
+    ssl_certificate /etc/letsencrypt/live/n8n.example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/n8n.example.com/privkey.pem;
+
     location / {
         proxy_pass http://localhost:5678;
         proxy_set_header Host $host;
