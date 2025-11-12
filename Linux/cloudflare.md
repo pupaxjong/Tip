@@ -1,6 +1,6 @@
 # Cloudflare 에서 DNS와 네임 서버 관리하기
 - ssl 인증을 해주니깐 편한다..
-- [홈페이지 바로 가기](https://www.cloudflare.com/)
+- [홈페이지 대시보드 바로 가기](https://dash.cloudflare.com/)
 - 계정을 생성.
 
 ## 상단에 계정을 클릭하면 대시보드로 들어와진다.
