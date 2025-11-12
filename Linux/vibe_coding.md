@@ -162,7 +162,7 @@ ckdkeiffsdfsdfsdfsdfdfsdfsdfsdfdsf-A_w
 Before continuing, verify the TXT record has been deployed. Depending on the DNS
 provider, this may take some time, from a few seconds to multiple minutes. You can
 check if it has finished deploying with aid of online tools, such as the Google
-Admin Toolbox: https://toolbox.googleapps.com/apps/dig/#TXT/_acme-challenge.jwent.pe.kr.
+Admin Toolbox: https://toolbox.googleapps.com/apps/dig/#TXT/_acme-challenge.xxx.com.
 Look for one or more bolded line(s) below the line ';ANSWER'. It should show the
 value(s) you've just added.
 
@@ -177,6 +177,7 @@ Press Enter to Continue
 값 : ckdkeiffsdfsdfsdfsdfdfsdfsdfsdfdsf-A_w
 ```
 - 등록 완료후 다른터미널에서 배포가 됐는지 확인을 해야 한다.
+- 20 ~ 30 분 기다려야 하는듯...
 ```bash
 nslookup code.xxx.com
 ```   
@@ -185,10 +186,40 @@ nslookup code.xxx.com
 ** server can't find code.xxxx.com: NXDOMAIN
 
 ----
-NXDOMAIN 가 나오면 안됨.. 아이피가 나와야 함.
+NXDOMAIN 가 나오면 안됨.. 등록한 값(ckdkeiffsdfsdfsdfsdfdfsdfsdfsdfdsf-A_w)과  비교하여 같은지 확인.
 ```
 
+- 환경설정
+```bash
+sudo vi /etc/nginx/sites-available/xxx.com
+```
+```text
+server {
+    listen 80;
+    server_name xxx.com *.xxx.com;
+    return 301 https://$host$request_uri;
+}
 
+server {
+    listen 443 ssl;
+    server_name xxx.com *.xxx.com;
+
+    ssl_certificate     /etc/letsencrypt/live/xxx.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/xxx.com/privkey.pem;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+
+    root /var/www/html;
+    index index.html;
+}
+```
+
+```bash
+sudo ln -s /etc/nginx/sites-available/jwent.pe.kr /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx
+```
 
 -----    
 
