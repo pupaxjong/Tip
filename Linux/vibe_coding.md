@@ -34,6 +34,26 @@ sudo npm install -g @google/gemini-cli
 gemini
 ```
 
+## 무료 dns 발급받기
+```text
+desec.io
+가입후
+Register a new domain under ....  를 체크하고
+사용할 도메인을 입력한다.
+Tell me about 는 체크 해제한다.
+
+이멜로 로그인 완료한다.
+
+발급된 도메인으로 들어가서
+레코드를 추가한다.
+유형 : A   그대로 둔다.
+호스티 이름 : n8n
+ip : 본인 공인 아이피 사용
+
+등록한다.. code 도 등록
+```
+
+
 ## vscode 설치
 ```bash
 curl -fsSL https://code-server.dev/install.sh | sh
@@ -67,17 +87,48 @@ sudo systemctl restart code-server@계정
 ```
 
 ### Caddy 설치 (웹 브라우즈에서 사용하기 위해)  : 이게 될진 모르겠다...
+- 아래 한번에 복사해서 실행할것
 ```bash
 sudo apt update
 sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https curl gnupg lsb-release
 
-curl -lsLf 'https://code.xxxx.com/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+curl -lsLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
 
 echo "deb [signed-by=/ussr/share/keyrings/caddy-stable-archive-keyring.gpg] \
-https://code.xxxx.com/caddy/stable/deb/ubuntu/ $(lsb_release -cs) main" | \
+https://dl.cloudsmith.io/caddy/stable/deb/ubuntu/ $(lsb_release -cs) main" | \
 sudo tee /etc/apt/sources.list.d/caddy-stable.list
 
 sudo apt update
 sudo apt install -y caddy
 ```
 
+- 아래는 하나씩 실행
+```bash
+sudo systemctl enable --now caady
+sudo systemctl status caddy
+caddy verion
+```
+
+- 환경 설정
+```bash
+sudo vi /etc/caddy/Caddyfile
+```
+아래 복사 붙여넣기
+```text
+게정-code.duckdns.org {
+  reverse_proxy localhost:10000
+}
+
+게정-n8n.duckdns.org {
+  reverse_proxy localhost:5678
+}
+```
+- Caddy 재시작
+```bash
+sudo systemctl restart caddy
+sudo systemctl status caddy
+```
+
+- [vscode 접속하기](게정-code.duckdns.org)
+
+  
