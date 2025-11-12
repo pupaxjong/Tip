@@ -1,7 +1,7 @@
 # nginx 를 사용시
 
-## 와일드 인증서 발급 : *.xxx.com 
-터미널 2개를 열어서 작업을 해야 한다.
+## 1. 와일드 인증서 발급 : *.xxx.com 
+### 터미널 2개를 열어서 작업을 해야 한다.
 ```bash
 sudo certbot -d "*.xxx.com" -d "xxx.com" --manual --preferred-challenges dns certonly
 ```
@@ -84,7 +84,7 @@ sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-## 인증서는 90일 유효 → 자동 갱신 설정됨
+### 인증서는 90일 유효 → 자동 갱신 설정됨
 ```bash
 sudo certbot renew --dry-run
 ```
@@ -94,7 +94,7 @@ sudo certbot renew --dry-run
 <br><br>   
 <br><br>   
 
-# nginx : 개별인증서 사용시 
+# 2. nginx : 개별인증서 사용시 
 ## dns 사이트에서 네임서버 등록 : 등록후 20~30분 정도 기다려야함.
 - 유형(타입) : CNAME
 - 호스트 이름 : code
