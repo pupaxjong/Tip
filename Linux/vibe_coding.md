@@ -221,6 +221,11 @@ sudo nginx -t
 sudo systemctl reload nginx
 ```
 
+## 인증서는 90일 유효 → 자동 갱신 설정됨
+```bash
+sudo certbot renew --dry-run
+```
+
 -----    
 
 <br><br>   
