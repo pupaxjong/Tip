@@ -86,7 +86,7 @@ sudo systemctl status code-server@계정 -l
 sudo systemctl restart code-server@계정
 ```
 
-### Caddy 설치 (웹 브라우즈에서 사용하기 위해)  : 나는 도메인이 있고, ngnix 를 사용하고 있어서 이건 건너띔.. 아래 ngnix 부분에서 ....
+### Caddy 설치 (웹 브라우즈에서 사용하기 위해)  : 나는 도메인이 있고, nginx 를 사용하고 있어서 이건 건너띔.. 아래 nginx 부분에서 ....
 - 아래 한번에 복사해서 실행할것
 ```bash
 sudo apt update
@@ -135,7 +135,7 @@ sudo systemctl status caddy
 
 <br><br>    
 
-# ngnix 를 사용시
+# nginx 를 사용시
 ## dns 사이트에서 네임서버 등록 : 등록후 20~30분 정도 기다려야함.
 - 유형(타입) : CNAME
 - 호스트 이름 : code
