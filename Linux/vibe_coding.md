@@ -68,7 +68,7 @@ sudo systemctl restart code-server@계정
 
 ### Caddy 설치 (웹 브라우즈에서 사용하기 위해)  : 이게 될진 모르겠다...
 ```bash
-sudo apt install
+sudo apt update
 sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https curl gnupg lsb-release
 
 curl -lsLf 'https://code.xxxx.com/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
