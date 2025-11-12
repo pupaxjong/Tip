@@ -143,11 +143,11 @@ sudo systemctl status caddy
 
 ### 확인
 ```bash
-dig code.jwnet.pe.kr
+dig code.xxx.com
 ```
 또는:
 ```bash
-nslookup code.jwnet.pe.kr
+nslookup code.xxx.com
 ```
 했을때 ip 나오면 성공. 안나오면 더 기다려야함.
 
@@ -168,7 +168,7 @@ sudo vi /etc/nginx/sites-available/code-server
 ```text
 server {
     listen 80;
-    server_name code.jwnet.pe.kr;
+    server_name code.xxx.com;
 
     location / {
         proxy_pass http://127.0.0.1:10000;
@@ -199,7 +199,7 @@ sudo apt install certbot python3-certbot-nginx -y
 ```
 
 - 인증서 발급 : 실패하면.. 아직 네임서버에 ip 가 등록이 안되었을수 있으므로 기다리기...
-- nslookup code.jwnet.pe.kr 로 확인하기 : NXDOMAIN 가 아닌 아이피가 나올때까지 확인.
+- nslookup code.xxx.com 로 확인하기 : NXDOMAIN 가 아닌 아이피가 나올때까지 확인.
 ```bash
 sudo certbot certonly --nginx -d code.xxxx.com
 ```
@@ -212,16 +212,16 @@ sudo vi /etc/nginx/sites-available/code-server
 ```text
 server {
     listen 80;
-    server_name code.jwnet.pe.kr;
+    server_name code.xxx.com;
     return 301 https://$host$request_uri;
 }
 
 server {
     listen 443 ssl;
-    server_name code.jwnet.pe.kr;
+    server_name code.xxx.com;
 
-    ssl_certificate /etc/letsencrypt/live/code.jwnet.pe.kr/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/code.jwnet.pe.kr/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/code.xxx.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/code.xxx.com/privkey.pem;
 
     location / {
         proxy_pass http://127.0.0.1:10000;
