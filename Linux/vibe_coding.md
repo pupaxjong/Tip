@@ -136,6 +136,65 @@ sudo systemctl status caddy
 <br><br>    
 
 # nginx 를 사용시
+
+## 와일드 인증서 발급 : *.xxx.com 
+터미널 2개를 열어서 작업을 해야 한다.
+```bash
+sudo certbot -d "*.xxx.com" -d "xxx.com" --manual --preferred-challenges dns certonly
+```
+- 이미 인증서가 있다면
+```text
+# 선택하는게 나오는데 e 는 기존거에 와일드 인증서를 추가하는것임.
+(E)xpand/(C)ancel: e
+```
+
+### 진행되다가 아래처럼 나오면.. enter 치치 말고 다음 호스팅 페이지의 dns 에 TXT 레코드 추가
+- 아래 값을 txt 레코드의 값에다가 넣어야 함.
+```text
+Please deploy a DNS TXT record under the name:
+
+_acme-challenge.xxx.com.
+
+with the following value:
+
+ckdkeiffsdfsdfsdfsdfdfsdfsdfsdfdsf-A_w
+
+Before continuing, verify the TXT record has been deployed. Depending on the DNS
+provider, this may take some time, from a few seconds to multiple minutes. You can
+check if it has finished deploying with aid of online tools, such as the Google
+Admin Toolbox: https://toolbox.googleapps.com/apps/dig/#TXT/_acme-challenge.jwent.pe.kr.
+Look for one or more bolded line(s) below the line ';ANSWER'. It should show the
+value(s) you've just added.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Press Enter to Continue
+```
+
+### TXT 레코드 추가하기
+```text
+유형(타입) : TXT
+호스트이름 : _acme-challenge
+값 : ckdkeiffsdfsdfsdfsdfdfsdfsdfsdfdsf-A_w
+```
+- 등록 완료후 다른터미널에서 배포가 됐는지 확인을 해야 한다.
+```bash
+nslookup code.xxx.com
+```   
+
+```text
+** server can't find code.xxxx.com: NXDOMAIN
+
+----
+NXDOMAIN 가 나오면 안됨.. 아이피가 나와야 함.
+```
+
+
+
+-----    
+
+<br><br>   
+
+# nginx : 개별인증서 사용시 
 ## dns 사이트에서 네임서버 등록 : 등록후 20~30분 정도 기다려야함.
 - 유형(타입) : CNAME
 - 호스트 이름 : code
