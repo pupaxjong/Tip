@@ -1,4 +1,6 @@
 # 바이브 코딩을 위해 node js 설치하기
+-[참고 영상](https://www.youtube.com/watch?v=4ydoXtc6U1o&t=1092s)    
+
 ```bash
 sudo apt install curl ca-certificates gnupg -y
 ```
