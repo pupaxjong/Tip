@@ -220,3 +220,8 @@ $ sudo iptables -I INPUT 5 -i ens3 -p tcp --dport 80 -m state --state NEW,ESTABL
 # 규칙 저장
 $ sudo netfilter-persistent save
 ```
+
+# [git 사용법](../git.md)   
+
+# [vibe coding 설치](vibe_coding.md)   
+
