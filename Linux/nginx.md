@@ -2,6 +2,16 @@
 
 # nginx 를 사용시
 
+- 설치
+```sh
+sudo apt update
+sudo apt install nginx -y
+
+# 상태 확인
+sudo systemctl status nginx
+```
+
+
 ## 1. 와일드 인증서 발급 : *.xxx.com 
 ### 터미널 2개를 열어서 작업을 해야 한다.
 ```bash
