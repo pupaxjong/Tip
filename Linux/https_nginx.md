@@ -6,6 +6,14 @@
 - DNS가 해당 서버 IP를 가리키고 있어야 함
 - 포트 80, 443이 방화벽에서 열려 있어야 함
 
+### 가입한 도메인 사이트에서 레코드 등록하기
+- ddns 로 등록시
+```test
+유형(타입) : CNAME
+호스트이림 : n8n
+값 : xxxx.iptime.org
+```
+
 ## ✅ 2. Nginx 설치
 ```bash
 sudo apt update
