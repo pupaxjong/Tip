@@ -112,6 +112,30 @@ rm -rf <경로>
 rm -rf .git/modules/<경로>
 ```
 
+### 🧳 루트에서 git pull 할때 서브모듈까지 다 받을려면
+```bash
+  git config --global submodule.recurse true
+```
+
+### 🧳 git submodule update --remote --merge 할려면 아래 설정을 해야한다.
+ .gitmodules 파일에서 branch = main 를 설정을 해야 한다.
+```text
+[submodule "path/to/submodule1"]
+    path = path/to/submodule1
+    url = git@github.com:example/submodule1.git
+    branch = main
+
+[submodule "path/to/submodule2"]
+    path = path/to/submodule2
+    url = git@github.com:example/submodule2.git
+    branch = develop
+```
+
+```bash
+git pull --recurse-submodules
+git submodule update --remote --merge
+```
+
 ---
 
 ## 🕰️ 히스토리 탐색 및 이전 버전으로 돌아가기
