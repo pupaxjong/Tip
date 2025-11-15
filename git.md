@@ -103,6 +103,8 @@ git submodule update --remote           # 서브모듈 최신 커밋으로 갱�
 # git submodule update --init → 서브모듈을 초기화하고 체크아웃함. 즉, 서브모듈 디렉토리에 실제 코드가 생김.
 # git submodule update --init --recursive → 서브모듈 안에 또 다른 서브모듈이 있을 경우, 하위 서브모듈까지 모두 초기화함.
 
+# 서브모듈을 부모 프로젝트에 기록된 대로 강제로 업데이트합니다. : HEAD 로 설정될수도 있다.
+git submodule update --init --recursive --force
 
 # 서브모듈 제거
 git config -f .gitmodules --remove-section submodule.<경로>
