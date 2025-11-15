@@ -58,12 +58,44 @@ ip : 본인 공인 아이피 사용
 ```bash
 curl -fsSL https://code-server.dev/install.sh | sh
 ```
-
-- code-server 실행
+### code-server 실행
 ```bash
 sudo systemctl enable --now code-server@$USER
 ```
-- 환경설정하기
+
+### 환경 설정하기
+
+#### 구글 인증 모드
+- 외부에서 접속할려면 구글 OAuth 인증 추가.
+  - 구글콘솔 -> 프로젝트 -> api 및 서비스 -> 사용자 인증
+    - 사용자 인증 추가
+      - 웹 어플리케인션
+      - 앱이름 : code.xxxx.com
+      - redirect-uri: https://code.xxx.com/oauth/callback
+    - client-id, client-secret 카피후 적용하기
+
+```bash
+vi ~/.config/code-server/config.yaml
+```
+- 키들 적용하기
+```text
+bind-addr: 0.0.0.0:8080
+auth: oauth
+oauth2:
+  provider: google
+  client-id: <YOUR_GOOGLE_CLIENT_ID>
+  client-secret: <YOUR_GOOGLE_CLIENT_SECRET>
+  redirect-uri: https://code.jwent.pe.kr/oauth/callback
+cert: false
+```
+
+---   
+
+<br>   
+
+
+#### 패스워드 모드. 
+
 ```bash
 vi ~/.config/code-server/config.yaml
 ```
@@ -73,18 +105,23 @@ bind-addr: 127.0.0.1:10000
 auth: password
 password: xxxxxxxxxx
 cert: false
-
-# ctrl+c 종료하면 수정이됨.
 ```
 
-- 상태 확인
+---   
+
+### 상태 확인
 ```bash
 sudo systemctl status code-server@계정 -l
 ```
-- 재시작하기
+### 재시작하기
 ```bash
 sudo systemctl restart code-server@계정
 ```
+
+---   
+
+<br><br>    
+
 
 ### Caddy 설치 (웹 브라우즈에서 사용하기 위해)  : 나는 도메인이 있고, nginx 를 사용하고 있어서 이건 건너띔.. 아래 nginx 부분에서 ....
 - 아래 한번에 복사해서 실행할것
