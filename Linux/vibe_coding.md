@@ -85,7 +85,7 @@ oauth2:
   provider: google
   client-id: <YOUR_GOOGLE_CLIENT_ID>
   client-secret: <YOUR_GOOGLE_CLIENT_SECRET>
-  redirect-uri: https://code.jwent.pe.kr/oauth/callback
+  redirect-uri: https://code.xxx.com/oauth/callback
 cert: false
 ```
 
