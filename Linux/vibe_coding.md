@@ -65,7 +65,7 @@ sudo systemctl enable --now code-server@$USER
 ```
 - 환경설정하기
 ```bash
-cat > ~/.config/code-server/config.yaml
+vi ~/.config/code-server/config.yaml
 ```
 - 아래 입력..패스워드는 수정할것
 ```text
