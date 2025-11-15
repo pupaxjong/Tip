@@ -30,7 +30,7 @@ server {
 
 server {
     listen 443 ssl;
-    server_name code.xxx.com;
+    server_name exsample.xxx.com;
 
     ssl_certificate /etc/letsencrypt/live/exsample.xxx.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/exsample.xxx.com/privkey.pem;
