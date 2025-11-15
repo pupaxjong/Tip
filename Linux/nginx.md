@@ -11,7 +11,55 @@ sudo apt install nginx -y
 sudo systemctl status nginx
 ```
 
+---   
 
+<br>   
+
+
+# cloudflare 에서 관리할 경우
+- 환경설정 파일만 만들면 될듯..
+```bash
+sudo vi /etc/nginx/sites-available/exsample
+```
+```text
+server {
+    listen 80;
+    server_name exsample.xxx.com;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name code.xxx.com;
+
+    ssl_certificate /etc/letsencrypt/live/exsample.xxx.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/exsample.xxx.com/privkey.pem;
+
+    location / {
+        proxy_pass http://127.0.0.1:port_num;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+```bash
+sudo ln -s /etc/nginx/sites-available/exsample.xxx.com /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+----    
+
+
+<br><br>   
+
+# nginx 에서 인증서 발급시
 ## 1. 와일드 인증서 발급 : *.xxx.com 
 ### 터미널 2개를 열어서 작업을 해야 한다.
 ```bash
@@ -91,7 +139,7 @@ server {
 ```
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/jwent.pe.kr /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/xxx.com /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 ```
