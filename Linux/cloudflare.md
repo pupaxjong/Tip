@@ -13,7 +13,7 @@
 
 <br><br>   
 
-# Cloudflare zero trust
+# Cloudflare zero trust : 작업중....
 - code-server 를 리눅스에 설치
   - code-server 는 패스워드 인증, none 만 지원을 해서.. 구글, github등 외부 인증을 추가할때 사용.
 - 무료 플랜가입을 한다. : 50명까지 사용가능.
