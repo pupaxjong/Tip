@@ -73,6 +73,7 @@ sudo certbot -d "*.xxx.com" -d "xxx.com" --manual --preferred-challenges dns cer
 
 ### 진행되다가 아래처럼 나오면.. enter 치치 말고 가입한 호스팅 페이지의 dns 에 TXT 레코드 추가
 - 아래 값을 txt 레코드의 값에다가 넣어야 함.
+- TXT : ckdkeiffsdfsdfsdfsdfdfsdfsdfsdfdsf-A_w
 ```text
 Please deploy a DNS TXT record under the name:
 
