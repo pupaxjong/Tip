@@ -218,7 +218,12 @@ sudo apt install certbot python3-certbot-nginx -y
 ```
 
 - 인증서 발급 : 실패하면.. 아직 네임서버에 ip 가 등록이 안되었을수 있으므로 기다리기...
-- nslookup code.xxx.com 로 확인하기 : NXDOMAIN 가 아닌 아이피가 나올때까지 확인.
+```bash
+nslookup code.xxx.com
+```
+nslookup code.xxx.com 로 확인하기 : NXDOMAIN 가 아닌 아이피가 나올때까지 확인.
+
+- 아이피가 나왔을 경우 인증서 발급하기
 ```bash
 sudo certbot certonly --nginx -d code.xxxx.com
 ```
