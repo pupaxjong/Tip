@@ -3,7 +3,7 @@
 ## code-server.sh 사용.
 ```bash
 사용 가능한 명령어.
---help
+--help                 : 사용법 출력.
 start / stop / restart : 컨테이너 시작, 중지에만 관여
 up / down / recreate   : 컨터이너 삭제, 생성 에 관여..
 
