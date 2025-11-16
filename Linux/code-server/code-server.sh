@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# run_code_server.sh
+# code-server.sh
 
 # --- Configuration ---
 # 🚨 기본 컨테이너 이름 및 이미지
@@ -13,6 +13,9 @@ COMPOSE_FILE="docker-compose.yml"
 # 🚨 Code Server 포트
 HOST_PORT="8080"
 CONTAINER_PORT="8080"
+# 🚨 Code Server Password (CLI 전용 광역 변수, 보안을 위해 즉시 변경 권장)
+CODE_SERVER_PASSWORD="code-server-password-cli-default"
+
 
 # --- Docker Compose Command Check ---
 # 🚨 신/구 버전 Docker Compose 명령어를 확인하고 변수에 저장
@@ -40,6 +43,7 @@ BLACK='\033[0;30m'
 BRIGHT_RED='\033[1;31m'
 BRIGHT_GREEN='\033[1;32m'
 BRIGHT_BLUE='\033[1;34m'
+BRIGHT_CYAN='\033[1;36m'
 BRIGHT_MAGENTA='\033[1;35m'
 
 # 배경 색상 (Background Colors)
@@ -121,6 +125,50 @@ remove_container_only() {
         echo -e "${CYAN}ℹ️ Container '$CONTAINER_NAME' does not exist.${RESET}"
     fi
     return 0
+}
+
+# 🚨 CLI 컨테이너에 config.yaml 파일을 자동 생성하고 재시작
+create_cli_config() {
+    echo -e "${YELLOW}⚙️ Code-Server 설정 파일 (config.yaml)을 컨테이너 내부에 자동 생성합니다...${RESET}"
+    
+    # 컨테이너가 완전히 시작될 시간을 잠시 기다림
+    sleep 3 
+    
+    # 1. config.yaml 내용 정의 (password 변수 사용)
+    local config_content="bind-addr: 0.0.0.0:$CONTAINER_PORT
+auth: password
+password: \"$CODE_SERVER_PASSWORD\"
+cert: false"
+
+    # 2. docker exec을 사용하여 파일 생성 및 권한 설정
+    # /home/coder/.config/code-server/config.yaml 경로에 생성
+    docker exec "$CONTAINER_NAME" /bin/sh -c "
+        # 디렉토리가 없는 경우 생성
+        mkdir -p /home/coder/.config/code-server
+        
+        # 파일 내용 작성
+        echo \"$config_content\" > /home/coder/.config/code-server/config.yaml
+        
+        # 권한 설정 (code-server 실행 사용자: coder)
+        chown -R coder:coder /home/coder/.config
+    "
+    
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}✅ config.yaml 파일이 ${YELLOW}'$CODE_SERVER_PASSWORD'${GREEN} 비밀번호로 생성되었습니다.${RESET}"
+        
+        # 설정을 바로 적용하기 위해 컨테이너 재시작
+        echo -e "${YELLOW}🔄 변경된 설정을 적용하기 위해 컨테이너를 재시작합니다...${RESET}"
+        docker restart "$CONTAINER_NAME" > /dev/null 2>&1
+        if [ $? -eq 0 ]; then
+            echo -e "${GREEN}✅ 컨테이너가 재시작되어 설정이 적용되었습니다.${RESET}"
+        else
+            echo -e "${RED}❌ 컨테이너 재시작에 실패했습니다.${RESET}"
+        fi
+        return 0
+    else
+        echo -e "${BG_RED}❌ config.yaml 자동 생성에 실패했습니다. 수동으로 확인해 주세요.${RESET}"
+        return 1
+    fi
 }
 
 # --- State Management Functions (start/stop/restart) ---
@@ -287,7 +335,10 @@ up() {
         return 1
     fi
 
+    local successful_run=0
+    
     if [ "$TOOL" = "compose" ]; then
+        # ... Compose 실행 로직 (이전과 동일)
         if [ -z "$DOCKER_COMPOSE_CMD" ]; then
             echo -e "${BG_RED}❌ Error: Docker Compose command not found.${RESET}"
             return 1
@@ -297,15 +348,14 @@ up() {
             return 1
         fi
         
-        # Compose up -d: 컨테이너가 없으면 생성 후 실행, 정지 상태면 시작
         echo -e "${CYAN}🚀 Running Compose project (up -d) via '$DOCKER_COMPOSE_CMD'...${RESET}"
-        # [DEBUG] 로그: Compose up
         echo -e "${BLUE}[DEBUG] ✅ Running container via Compose (up -d)...${RESET}"
 
         $DOCKER_COMPOSE_CMD -f "$COMPOSE_FILE" up -d
         
         if [ $? -eq 0 ]; then
             echo -e "${GREEN}✅ Code-Server via Docker Compose Created/Started Successfully.${RESET}"
+            successful_run=1
         else
             echo -e "${BG_RED}❌ Docker Compose up failed.${RESET}"
             return 1
@@ -316,7 +366,6 @@ up() {
         remove_container_only # 기존 컨테이너가 있으면 삭제
         
         echo -e "${CYAN}🚀 Running new container '$CONTAINER_NAME' in background (run -d)...${RESET}"
-        # [DEBUG] 로그: CLI run
         echo -e "${BLUE}[DEBUG] ✅ Running container via CLI (run -d)...${RESET}"
 
         docker run -d \
@@ -325,10 +374,15 @@ up() {
             -p "$HOST_PORT":"$CONTAINER_PORT" \
             -v "$VOLUME_NAME":/home/coder/project \
             --network "$NETWORK_NAME" \
+            -e "PASSWORD=$CODE_SERVER_PASSWORD" \ # 🚨 전역 변수 패스워드 사용
             "$IMAGE_NAME"
 
         if [ $? -eq 0 ]; then
-            echo -e "${GREEN}✅ Code-Server Container Created/Started Successfully.${RESET}"
+            successful_run=1
+            
+            # 🚨 CLI 전용: config.yaml 자동 생성 및 컨테이너 재시작
+            create_cli_config
+            
         else
             echo -e "${BG_RED}❌ Code-Server Container Run Failed.${RESET}"
             return 1
@@ -340,8 +394,20 @@ up() {
         return 1
     fi
     
-    echo -e "${CYAN}🌐 Access URL: http://localhost:$HOST_PORT${RESET} (or ${CYAN}Server IP:$HOST_PORT${RESET})"
-    echo -e "${YELLOW}🔑 Initial Password: $CONTAINER_NAME 터미널에서 확인 (docker logs $CONTAINER_NAME)${RESET}"
+    if [ "$successful_run" -eq 1 ]; then
+        # 최종 공통 출력
+        echo -e "\n${CYAN}🌐 Access URL: http://localhost:$HOST_PORT${RESET} (or ${CYAN}Server IP:$HOST_PORT${RESET})"
+        
+        # 도구별 비밀번호/설정 정보 출력
+        if [ "$TOOL" = "cli" ]; then
+            # CLI는 config 자동 생성 및 재시작이 완료되었으므로 최종 확인 메시지만 출력
+            echo -e "${GREEN}✅ 초기 설정이 자동으로 완료되었습니다.${RESET}"
+            echo -e "${YELLOW}🔑 현재 적용된 비밀번호: ${BRIGHT_RED}$CODE_SERVER_PASSWORD${RESET}"
+            echo -e "${YELLOW}💡 비밀번호 변경은 ${BRIGHT_RED}$0 sh${RESET} 명령 후 ${BRIGHT_RED}vi ~/.config/code-server/config.yaml${RESET} 파일에서 가능합니다.${RESET}"
+        elif [ "$TOOL" = "compose" ]; then
+            echo -e "${YELLOW}🔑 초기 비밀번호: docker-compose.yml 파일의 ${BRIGHT_RED}PASSWORD${RESET} 환경 변수를 확인하세요.${RESET}"
+        fi
+    fi
 }
 
 # 🚨 컨테이너 재생성 (down 후 up)
