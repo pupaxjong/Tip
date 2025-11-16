@@ -1,0 +1,18 @@
+# docker-compose.yml
+
+ersion: '3.8'
+
+services:
+  code-server:
+    image: codercom/code-server:latest
+    container_name: code-server
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - code-server-data:/home/coder/project
+    environment:
+      - PASSWORD=your-password  # 또는 auth: none 설정 시 제거 가능
+
+volumes:
+  code-server-data:
