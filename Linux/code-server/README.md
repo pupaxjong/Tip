@@ -1,5 +1,19 @@
 # Docker 에 coder-server 설치
 
+## code-server.sh 사용.
+```bash
+사용 가능한 명령어.
+--help
+start / stop / restart : 컨테이너 시작, 중지에만 관여
+up / down / recreate   : 컨터이너 삭제, 생성 에 관여..
+
+--------------------
+
+./code-server.sh up <cli / compose>
+- cli : docker -d run ....
+- compose : docker-compose.yml 사용.
+```
+
 ## docker-compose.yml
 
 ```bash
