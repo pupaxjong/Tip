@@ -1,4 +1,7 @@
-# Docker 에 coder-server 설치
+# Docker 에 code-server 설치
+- Docker 에 설치할때 호스트 폴더 마운트 된 곳에서만 프로젝트 생성과 수정이 가능함.
+- 필요한 폴더를 모두 마운트 하거나 아니면 호스트에 code-server 를 설치를 해야 한다.
+
 
 ## code-server.sh 사용.
 ```bash
