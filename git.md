@@ -114,12 +114,20 @@ rm -rf <경로>
 rm -rf .git/modules/<경로>
 ```
 
+### 서브모듈 주소 변경
+- .gitmoudle 에서 주소 수정.
+- commit 하기.
+- 서브모듈 싱크 맞추기.
+```bash
+git submodule sync my_module
+```
+
 ### 🧳 루트에서 git pull 할때 서브모듈까지 다 받을려면
 ```bash
   git config --global submodule.recurse true
 ```
 
-### 🧳 git submodule update --remote --merge 할려면 아래 설정을 해야한다.
+#### 🧳 git submodule update --remote --merge 할려면 아래 설정을 해야한다.
  .gitmodules 파일에서 branch = main 를 설정을 해야 한다.
 ```text
 [submodule "path/to/submodule1"]
