@@ -121,6 +121,15 @@ rm -rf .git/modules/<경로>
 ```bash
 git submodule sync my_module
 ```
+- 모든 서브모듈을 한 번에 동기화하려면
+```bash
+git submodule sync
+```
+
+- 서브모듈 업데이트 및 다운로드 : 이제 서브모듈을 새 주소에서 가져와(fetch) 내용을 업데이트(update)합니다
+```bash
+git submodule update --init --recursive my_module
+```
 
 ### 🧳 루트에서 git pull 할때 서브모듈까지 다 받을려면
 ```bash
